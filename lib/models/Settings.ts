@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const SettingsSchema = new mongoose.Schema({
-  redirect: { type: String, default: "" },
+  redirectUrl: { type: String, default: "" },
 });
 
 export const Settings =

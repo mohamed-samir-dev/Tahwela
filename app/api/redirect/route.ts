@@ -5,12 +5,12 @@ import { Settings } from "@/lib/models/Settings";
 export async function GET() {
   await connectDB();
   const settings = await Settings.findOne();
-  return NextResponse.json({ redirect: settings?.redirect || "" });
+  return NextResponse.json({ redirectUrl: settings?.redirectUrl || "" });
 }
 
 export async function POST(req: Request) {
   await connectDB();
-  const { redirect } = await req.json();
-  await Settings.findOneAndUpdate({}, { redirect }, { upsert: true });
+  const { redirectUrl } = await req.json();
+  await Settings.findOneAndUpdate({}, { redirectUrl }, { upsert: true });
   return NextResponse.json({ success: true });
 }
