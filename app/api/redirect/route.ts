@@ -1,16 +1,16 @@
 import { NextResponse } from "next/server";
-import { readFileSync, writeFileSync } from "fs";
-import { join } from "path";
-
-const dataPath = join(process.cwd(), "data.json");
+import { connectDB } from "@/lib/mongodb";
+import { Settings } from "@/lib/models/Settings";
 
 export async function GET() {
-  const data = JSON.parse(readFileSync(dataPath, "utf-8"));
-  return NextResponse.json(data);
+  await connectDB();
+  const settings = await Settings.findOne();
+  return NextResponse.json({ redirect: settings?.redirect || "" });
 }
 
 export async function POST(req: Request) {
-  const { redirectUrl } = await req.json();
-  writeFileSync(dataPath, JSON.stringify({ redirectUrl }));
+  await connectDB();
+  const { redirect } = await req.json();
+  await Settings.findOneAndUpdate({}, { redirect }, { upsert: true });
   return NextResponse.json({ success: true });
 }

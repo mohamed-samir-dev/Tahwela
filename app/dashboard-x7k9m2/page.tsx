@@ -9,14 +9,14 @@ export default function Admin() {
   useEffect(() => {
     fetch("/api/redirect")
       .then((r) => r.json())
-      .then((d) => setUrl(d.redirectUrl || ""));
+      .then((d) => setUrl(d.redirect || ""));
   }, []);
 
   const save = async () => {
     await fetch("/api/redirect", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ redirectUrl: url }),
+      body: JSON.stringify({ redirect: url }),
     });
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
