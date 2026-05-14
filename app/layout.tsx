@@ -8,7 +8,7 @@ const cairo = Cairo({
   weight: ["300", "400", "500", "600", "700", "800", "900"],
 });
 
-const siteUrl = "https://www.madaar-electronics.com";
+const siteUrl = process.env.SITE_URL || "https://www.madaar-electronics.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
       "وجهتكم الأولى لأحدث الأجهزة الإلكترونية والتقنيات المنزلية والمكتبية. نوفر لكم أحدث الابتكارات التقنية من أرقى الماركات العالمية.",
     images: [
       {
-        url: "https://www.madaar-electronics.com/og-image.jpg",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "مدار الأجهزة الإلكترونية",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     title: "مدار الأجهزة الإلكترونية | أفضل الأجهزة بأعلى جودة وأفضل سعر",
     description:
       "وجهتكم الأولى لأحدث الأجهزة الإلكترونية والتقنيات المنزلية والمكتبية.",
-    images: ["https://www.madaar-electronics.com/og-image.jpg"],
+    images: ["/og-image.jpg"],
   },
   robots: {
     index: true,
