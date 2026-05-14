@@ -13,8 +13,8 @@ export default function Home() {
   }
 
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <p className="text-xl">لم يتم تحديد رابط التحويل بعد</p>
+    <div className="flex items-center justify-center min-h-screen bg-white">
+      <p className="text-xl text-gray-700">لم يتم تحديد رابط التحويل بعد</p>
     </div>
   );
 }
