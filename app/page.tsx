@@ -1,15 +1,15 @@
 import { redirect } from "next/navigation";
-import { readFileSync } from "fs";
-import { join } from "path";
+import { connectDB } from "@/lib/mongodb";
+import { Settings } from "@/lib/models/Settings";
 
 export const dynamic = "force-dynamic";
 
-export default function Home() {
-  const dataPath = join(process.cwd(), "data.json");
-  const { redirectUrl } = JSON.parse(readFileSync(dataPath, "utf-8"));
+export default async function Home() {
+  await connectDB();
+  const settings = await Settings.findOne();
 
-  if (redirectUrl) {
-    redirect(redirectUrl);
+  if (settings?.redirectUrl) {
+    redirect(settings.redirectUrl);
   }
 
   return (
